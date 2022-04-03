@@ -1,0 +1,12 @@
+.Tag_ContainerRow{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.Tag_Content{
+    padding: 8px 12px;
+    border-radius: 32px;
+    margin-right: 8px;
+}

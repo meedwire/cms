@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { RecoilRoot } from "recoil";
+import "./App.css";
+
+import { Content, FakeSection, FakeTabs } from "./components";
+import { ContentPanel } from "./components/ContentPanel";
+import { Modal } from "./components/Modal";
+import { ModalContentSection } from "./components/ModalContentSection";
+import { ModalTabs } from "./components/ModalTabs";
+
+const Components = [Content, FakeTabs, FakeSection];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <div className="Components">
+          {Components.map((component) => React.createElement(component))}
+        </div>
+        <ContentPanel />
+      </div>
+      <ModalTabs />
+      <ModalContentSection />
+      <Modal />
+    </RecoilRoot>
   );
 }
 
