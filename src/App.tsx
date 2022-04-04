@@ -5,24 +5,34 @@ import "./App.css";
 import { Content, FakeSection, FakeTabs } from "./components";
 import { ContentPanel } from "./components/ContentPanel";
 import { Modal } from "./components/Modal";
-import { ModalContentSection } from "./components/ModalContentSection";
-import { ModalTabs } from "./components/ModalTabs";
+import { createTheme, ThemeProvider } from "@mui/material";
 
 const Components = [Content, FakeTabs, FakeSection];
 
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#8e8e8e",
+    },
+    secondary: {
+      main: "#ffffff",
+    },
+  },
+});
+
 function App() {
   return (
-    <RecoilRoot>
-      <div className="App">
-        <div className="Components">
-          {Components.map((component) => React.createElement(component))}
+    <ThemeProvider theme={theme}>
+      <RecoilRoot>
+        <div className="App">
+          <div className="Components">
+            {Components.map((component) => React.createElement(component))}
+          </div>
+          <ContentPanel />
         </div>
-        <ContentPanel />
-      </div>
-      <ModalTabs />
-      <ModalContentSection />
-      <Modal />
-    </RecoilRoot>
+        <Modal />
+      </RecoilRoot>
+    </ThemeProvider>
   );
 }
 

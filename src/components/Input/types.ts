@@ -1,8 +1,7 @@
-import React from "react";
+import { TextFieldProps } from "@mui/material";
 
-export interface IPropsInput
-  extends React.InputHTMLAttributes<HTMLInputElement> {
+export type IPropsInput = TextFieldProps & {
   label?: string;
   errorMessage?: string;
   onChangeText?: (text?: string) => void;
-}
+};

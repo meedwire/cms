@@ -1,13 +1,18 @@
 import React from "react";
-import "./styles.css";
+import { Add } from "@mui/icons-material";
+import { IconButton } from "@mui/material";
 
-interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+type Props = typeof IconButton["arguments"]["props"];
 
 const ButtonAdd: React.FC<Props> = ({ ...props }) => {
   return (
-    <button className="Button_Add" {...props}>
-      +
-    </button>
+    <IconButton
+      {...props}
+      size="small"
+      style={{ position: "absolute", right: 6, top: 6 }}
+    >
+      <Add />
+    </IconButton>
   );
 };
 

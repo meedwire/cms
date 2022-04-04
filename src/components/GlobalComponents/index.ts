@@ -7,7 +7,7 @@ export const GlobalContainer = styled.div`
   border: 1px solid #dadada;
   box-sizing: border-box;
   margin: 16px 16px 0px 16px;
-  border-radius: 16px;
+  border-radius: 22px;
   cursor: move;
   transition: all 300ms;
   position: relative;

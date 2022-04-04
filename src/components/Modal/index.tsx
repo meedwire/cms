@@ -1,4 +1,4 @@
-import { Dialog, Slide } from "@mui/material";
+import { Dialog, DialogContent, Slide } from "@mui/material";
 import React from "react";
 import { useRecoilValue } from "recoil";
 import { useModal } from "./hooks";
@@ -17,19 +17,21 @@ const Transition = React.forwardRef(function Transition(
 });
 
 const Modal: React.FC = () => {
-  const { visible, children } = useRecoilValue(modalState);
+  const { visible, children, maxWidth } = useRecoilValue(modalState);
   const { close } = useModal();
 
   if (!visible) return null;
 
   return (
     <Dialog
-      open={visible}
-      TransitionComponent={Transition}
+      fullWidth
       keepMounted
+      maxWidth={maxWidth}
+      open={visible}
       onClose={close}
+      TransitionComponent={Transition}
     >
-      <Styles.ModalContent>{children}</Styles.ModalContent>
+      {children}
     </Dialog>
   );
 };
