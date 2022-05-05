@@ -1,5 +1,5 @@
+import styled, { css } from "styled-components";
 import { IconButton } from "@mui/material";
-import styled from "styled-components";
 import { View } from "../GlobalComponents";
 
 export const MoreButton = styled(IconButton)`
@@ -9,7 +9,7 @@ export const MoreButton = styled(IconButton)`
   }
 `;
 
-export const Container = styled(View)`
+export const Container = styled(View)<{ isFake?: boolean }>`
   flex-direction: row;
   padding: 4px 16px;
   transition: all 100ms;
@@ -17,12 +17,14 @@ export const Container = styled(View)`
   ${MoreButton} {
     visibility: hidden;
   }
-  &:hover {
-    box-shadow: 0px 0px 13px #dadada;
-    ${MoreButton} {
-      visibility: visible;
-    }
-  }
+  ${({ isFake }) =>
+    !isFake &&
+    css`
+      &:hover {
+        box-shadow: 0px 0px 13px #dadada;
+        ${MoreButton} {
+          visibility: visible;
+        }
+      }
+    `}
 `;
-
-export const Title = styled.h3``;

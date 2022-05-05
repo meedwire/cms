@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { uuid } from "../../utils";
-import "./styles.css";
+import { useModal } from "../Modal/hooks";
+import { ModalTabs } from "../ModalTabs";
+import { SectionEditable } from "../SectionEditable";
+import * as Styles from "./styles";
+import { IPropsTabs } from "./types";
 
 const initialData = [
   {
@@ -17,36 +21,39 @@ const initialData = [
   },
 ];
 
-interface Props {
-  data?: [
-    {
-      title: string;
-      contentID: string;
-    }
-  ];
-  isFake?: boolean;
-  onSelect?: (id: string) => void;
-}
-
-const Tabs: React.FC<Props> = ({ data = initialData, onSelect }) => {
+const Tabs: React.FC<IPropsTabs> = ({
+  data = initialData,
+  onSelect,
+  isFake,
+}) => {
   const [active, setActive] = useState(0);
+  const { setVisible } = useModal();
+
+  function handleSelect(index: number, id: string) {
+    if (onSelect) onSelect(id);
+    setActive(index);
+  }
+
+  function handleEdit() {
+    setVisible(<ModalTabs />);
+  }
+
   return (
-    <div className="Tabs">
-      <div className="Fake_TabContainer">
-        {data.map((tab, i) => (
-          <div
-            onClick={() => {
-              onSelect && onSelect(tab.contentID);
-              setActive(i);
-            }}
-            key={tab.contentID}
-            className={active === i ? "Fake_TabItem active" : "Fake_TabItem"}
-          >
-            <p>{tab.title}</p>
-          </div>
-        ))}
-      </div>
-    </div>
+    <SectionEditable onEdit={handleEdit} isFake={isFake}>
+      <Styles.Container>
+        <Styles.TabContainer>
+          {data.map((tab, i) => (
+            <Styles.TabItem
+              key={tab.contentID}
+              active={active === i}
+              onClick={() => handleSelect(i, tab.contentID)}
+            >
+              <Styles.Title>{tab.title}</Styles.Title>
+            </Styles.TabItem>
+          ))}
+        </Styles.TabContainer>
+      </Styles.Container>
+    </SectionEditable>
   );
 };
 

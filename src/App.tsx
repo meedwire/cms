@@ -20,6 +20,28 @@ const theme = createTheme({
   },
 });
 
+Object.assign(theme, {
+  overrides: {
+    MUIRichTextEditor: {
+      root: {
+        width: "100%",
+        marginTop: -20,
+      },
+      editor: {
+        border: "1px solid gray",
+        padding: "8px 25px",
+        borderRadius: 8,
+        minHeight: 150,
+      },
+      placeHolder: {
+        position: "absolute",
+        paddingLeft: 8,
+        paddingTop: 10,
+      },
+    },
+  },
+});
+
 function App() {
   return (
     <ThemeProvider theme={theme}>

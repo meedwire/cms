@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Add, ExpandLess, ExpandMore, TextFields } from "@mui/icons-material";
 import {
   Collapse,
+  Grid,
   IconButton,
   List,
   ListItem,
@@ -33,12 +34,10 @@ const ItemListSimpleText: React.FC<Props> = ({ value, handleAdd }) => {
         <List component="div" disablePadding>
           <ListItem>
             <MUIRichTextEditor
-              controls={["italic", "bold"]}
               label="Start typing..."
               inlineToolbar
-              onChange={(state) => console.log(state)}
+              onSave={(data) => console.log(JSON.parse(data))}
             />
-            {/* <Input multiline rows={6} value={value} /> */}
             <IconButton onClick={handleAdd}>
               <Add />
             </IconButton>

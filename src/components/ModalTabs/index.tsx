@@ -107,7 +107,7 @@ const ModalTabs: React.FC = () => {
         </Grid>
         <Tabs
           data={contentTabs as any}
-          isFake={false}
+          isFake={true}
           onSelect={(id) => {
             setOnEdit(id);
             setInputValue(
